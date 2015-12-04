@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- http://fortawesome.github.io/Font-Awesome/cheatsheet/ -->
+    <string name="fa_icon_areachart">&#xf1fe;</string>
+    <string name="fa_icon_piechart">&#xf200;</string>
+    <string name="fa_icon_linechart">&#xf201;</string>
+
+    <string name="fa_icon_plane">&#xf072;</string>
+
+    <string name="fa_icon_arrow_right">&#xf061;</string>
+    <string name="fa_icon_arrow_left">&#xf060;</string>
+    <string name="fa_icon_arrow_up">&#xf062;</string>
+    <string name="fa_icon_arrow_down">&#xf063;</string>
+
+    <string name="fa_icon_user">&#xf007;</string>
+
+</resources>
