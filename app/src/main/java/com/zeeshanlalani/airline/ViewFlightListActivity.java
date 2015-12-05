@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.zeeshanlalani.airline.helpers.FlightListAdapter;
+
 public class ViewFlightListActivity extends AppCompatActivity {
 
     ListView listView;

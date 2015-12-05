@@ -1,6 +1,9 @@
 package com.zeeshanlalani.airline.models;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by zzlal on 12/1/2015.
@@ -10,21 +13,22 @@ public class User {
     String id;
     String firstName;
     String lastName;
-    String email;
+    String username;
     String password;
-    Date date;
 
-    public User(String id, String firstName, String lastName, String email, String password, Date date) {
+    public User(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String id, String firstName, String lastName, String username, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.username = username;
         this.password = password;
-        this.date = date;
-    }
-
-    public Date getDate() {
-        return date;
     }
 
     public String getId() {
@@ -39,11 +43,26 @@ public class User {
         return lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public String toPostData () {
+        String params = "";
+
+        params += "firstName="+firstName;
+        params += "&lastName="+lastName;
+        params += "&username="+username;
+        params += "&password="+password;
+
+        if (id != null) {
+            params += "&id="+id;
+        }
+
+        return params;
     }
 }

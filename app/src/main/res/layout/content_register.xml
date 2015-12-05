@@ -25,6 +25,7 @@
 
 
         <!-- FirstName Label -->
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,17 +51,17 @@
                 android:hint="Last Name" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Email Label -->
+        <!-- Username Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_email"
+            <EditText android:id="@+id/input_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="Email" />
+                android:inputType="text"
+                android:hint="Username" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
