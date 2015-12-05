@@ -20,7 +20,6 @@ import org.json.JSONObject;
 public class UserManager {
 
     WebService ws;
-    String action = "user";
 
     public UserManager () {
         ws = new WebService();

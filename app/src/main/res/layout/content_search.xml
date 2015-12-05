@@ -25,65 +25,87 @@
 
 
         <!-- Trip Label -->
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="One Way"
-                android:id="@+id/radio_oneway" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Round Trip"
-                android:id="@+id/radio_round" />
-        </LinearLayout>
-
-        <!-- FirstName Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_from"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="From" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+                <RadioGroup
+                    android:id="@+id/radio_trip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="One Way"
+                        android:id="@+id/radio_oneway" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Round Trip"
+                        android:id="@+id/radio_round" />
+                </RadioGroup>
+            </LinearLayout>
         </android.support.design.widget.TextInputLayout>
 
-        <!-- LastName Label -->
+        <!-- From (Destination) Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_to"
+            <Spinner
+                android:id="@+id/spinner_from"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="To" />
+                android:layout_height="wrap_content" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Email Label -->
+        <!-- To (Source) Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_departing"
+            <Spinner
+                android:id="@+id/spinner_to"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="Departing" />
+                android:layout_height="wrap_content" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Password Label -->
+        <!-- Flight Class Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <Spinner
+                android:id="@+id/spinner_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/flight_class"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Departure Date Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_departure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:hint="Departure" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Returning Date Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -92,11 +114,11 @@
             <EditText android:id="@+id/input_return"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="date"
                 android:hint="Return"/>
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Confirm Password Label -->
+        <!-- Number of Persons Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,7 +127,7 @@
             <EditText android:id="@+id/input_person"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="number"
                 android:hint="Person"/>
         </android.support.design.widget.TextInputLayout>
 
@@ -118,13 +140,6 @@
             android:padding="12dp"
             android:text="Find"/>
 
-        <TextView android:id="@+id/link_back"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="&lt; Back"
-            android:gravity="center"
-            android:textSize="16dip"/>
 
     </LinearLayout>
 </ScrollView>

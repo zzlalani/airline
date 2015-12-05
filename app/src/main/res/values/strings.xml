@@ -9,4 +9,11 @@
     <string name="title_activity_view_booking">ViewBookingActivity</string>
     <string name="title_activity_view_profile">ViewProfileActivity</string>
     <string name="title_activity_view_feedback">ViewFeedbackActivity</string>
+
+    <string-array name="flight_class">
+        <item>First Class</item>
+        <item>Business Class</item>
+        <item>Economy Class</item>
+    </string-array>
+
 </resources>

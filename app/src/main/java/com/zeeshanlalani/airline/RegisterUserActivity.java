@@ -81,6 +81,26 @@ public class RegisterUserActivity extends AppCompatActivity {
                         }
 
                         @Override
+                        public void terminate(final String message) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    new AlertDialog.Builder(ctx)
+                                            .setTitle("Error!")
+                                            .setMessage(message)
+                                            .setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    // continue with delete
+                                                    dialog.cancel();
+                                                }
+                                            })
+                                            .show();
+                                    progressDialog.dismiss();
+                                }
+                            });
+                        }
+
+                        @Override
                         public String call() throws Exception {
                             Log.d("RESP", response.toString());
                             if (response.getString("status").equals("OK")) {

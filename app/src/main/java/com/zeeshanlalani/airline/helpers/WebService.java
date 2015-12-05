@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -16,10 +17,11 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by zzlal on 12/5/2015.
+ * Ref: https://community.particle.io/t/example-android-application-post-get/9355 (Primary)
  * Ref: http://www.ssaurel.com/blog/learn-to-consume-a-rest-web-service-and-parse-json-result-in-android/
  */
 public class WebService {
-    private static final String SERVICE_URL = "http://192.168.10.4/api/";
+    private static final String SERVICE_URL = "http://192.168.10.6/api/";
 
     ExecutorService executorService = Executors.newCachedThreadPool();
 
@@ -52,11 +54,67 @@ public class WebService {
                     con.setInstanceFollowRedirects(false);
                     con.setRequestMethod("POST");
 
+                    con.setReadTimeout(10000);
+                    con.setConnectTimeout(10000);
+
                     // Send
                     OutputStreamWriter writer = new OutputStreamWriter(
                             con.getOutputStream());
                     writer.write(param);
                     writer.close();
+
+                    con.connect();
+
+                    BufferedReader br = null;
+                    if (con.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                        br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+
+                    } else {
+                        br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    }
+
+                    JSONObject resp = bufferToJson(br);
+
+                    callback.setResponse(resp);
+                    callback.call();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                    callback.terminate(e.toString());
+                }
+
+            }
+        });
+    }
+
+    /**
+     * Executes the HTTP request. To post data
+     *
+     * @param request
+     *            Request to be executed.
+     * @param callback
+     *            Execute callback on request completion
+     */
+    public void getData (final String request, final APIResponseCallable callback) {
+
+        Log.d("API", "Sending post request to URL (" + SERVICE_URL + request + ")");
+
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    URL url = new URL(SERVICE_URL + request);
+                    // Open a connection using HttpURLConnection
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+
+                    con.setRequestMethod("GET");
+                    con.setReadTimeout(10000);
+                    con.setConnectTimeout(10000);
+
+                    // Send
+                    InputStream in = con.getInputStream();
 
                     con.connect();
 

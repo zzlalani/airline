@@ -17,4 +17,12 @@ public interface APIResponseCallable extends Callable<String> {
      */
     public void setResponse(JSONObject response);
 
+    /**
+     * exception occurred
+     *
+     * @param message
+     *            Cause of expection
+     */
+    public void terminate(String message);
+
 }
