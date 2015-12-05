@@ -7,13 +7,29 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.zeeshanlalani.airline.controllers.FlightManager;
 import com.zeeshanlalani.airline.helpers.FlightListAdapter;
+import com.zeeshanlalani.airline.models.Airport;
+import com.zeeshanlalani.airline.models.Flight;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.util.List;
 
 public class ViewFlightListActivity extends AppCompatActivity {
 
+    FlightManager flightManager;
+
+    List<Flight> flights;
+
     ListView listView;
     Context context;
+
+    String fromText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +38,30 @@ public class ViewFlightListActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        flightManager = new FlightManager();
+        JSONObject searchObj = null;
+
+        try {
+            JSONObject searchData = new JSONObject(getIntent().getStringExtra("searchData"));
+            flights = flightManager.populateFlights(searchData);
+            searchObj = flightManager.getSearchObject(searchData);
+
+            if (flights.size() > 0) {
+                Flight f = flights.get(0);
+                Airport a = f.getTo();
+                fromText = a.getName();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         context = this;
 
         listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(new FlightListAdapter(this));
+        listView.setAdapter(new FlightListAdapter(this, flights, searchObj));
 
+        TextView search_detail = (TextView) findViewById(R.id.search_detail);
+        search_detail.setText("Search a flight to "+fromText+"\nPrices one-way per person");
     }
 
     @Override

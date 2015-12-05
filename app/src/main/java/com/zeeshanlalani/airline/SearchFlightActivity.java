@@ -176,8 +176,9 @@ public class SearchFlightActivity extends AppCompatActivity {
                                     public void run() {
 
                                         Intent flightsIntent = new Intent(SearchFlightActivity.this, ViewFlightListActivity.class);
-
+                                        flightsIntent.putExtra("searchData", response.toString());
                                         SearchFlightActivity.this.startActivity(flightsIntent);
+
                                         progressDialog.dismiss();
                                     }
                                 });

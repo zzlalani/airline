@@ -3,6 +3,7 @@ package com.zeeshanlalani.airline.controllers;
 import com.zeeshanlalani.airline.helpers.APIResponseCallable;
 import com.zeeshanlalani.airline.helpers.WebService;
 import com.zeeshanlalani.airline.models.Airport;
+import com.zeeshanlalani.airline.models.Flight;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +50,33 @@ public class FlightManager {
 
     public void searchFlights(String params, APIResponseCallable callback) {
         ws.postData("flight/search", params, callback);
+    }
+
+    public List<Flight> populateFlights(JSONObject searchData) {
+        List<Flight> flights = new ArrayList<Flight>();
+        try {
+            JSONArray searchArray = searchData.getJSONArray("data");
+            for (int i = 0; i < searchArray.length(); i++) {
+                Flight f = new Flight(searchArray.getJSONObject(i));
+                flights.add(f);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return flights;
+    }
+
+    public JSONObject getSearchObject (JSONObject searchData) {
+        JSONObject searchArray;
+        try {
+            searchArray = searchData.getJSONObject("search");
+            return searchArray;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }
