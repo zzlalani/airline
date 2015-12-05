@@ -1,6 +1,7 @@
 package com.zeeshanlalani.airline;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -57,6 +58,11 @@ public class RegisterUserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (validate()) {
 
+                    final ProgressDialog progressDialog = new ProgressDialog(RegisterUserActivity.this);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Please wait...");
+                    progressDialog.show();
+
                     String firstName = txtFirstName.getText().toString();
                     String lastName = txtLastName.getText().toString();
 
@@ -94,6 +100,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                                                         }
                                                     })
                                                     .show();
+                                            progressDialog.dismiss();
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
@@ -115,6 +122,7 @@ public class RegisterUserActivity extends AppCompatActivity {
                                                         }
                                                     })
                                                     .show();
+                                            progressDialog.dismiss();
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
@@ -131,7 +139,6 @@ public class RegisterUserActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
 

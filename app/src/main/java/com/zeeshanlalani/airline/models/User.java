@@ -31,6 +31,11 @@ public class User {
         this.password = password;
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public String getId() {
         return id;
     }
@@ -54,13 +59,24 @@ public class User {
     public String toPostData () {
         String params = "";
 
-        params += "firstName="+firstName;
-        params += "&lastName="+lastName;
-        params += "&username="+username;
-        params += "&password="+password;
+        if (firstName != null) {
+            params += "firstName="+firstName+"&";
+        }
+
+        if (lastName != null) {
+            params += "lastName="+lastName+"&";
+        }
+
+        if (username != null) {
+            params += "username="+username+"&";
+        }
+
+        if (password != null) {
+            params += "password="+password+"&";
+        }
 
         if (id != null) {
-            params += "&id="+id;
+            params += "id="+id+"&";
         }
 
         return params;

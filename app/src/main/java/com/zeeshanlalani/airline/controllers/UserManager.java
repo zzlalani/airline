@@ -34,4 +34,11 @@ public class UserManager {
         ws.postData("register", data, callback);
     }
 
+    public  void loginUser (String username, String password, APIResponseCallable callback) {
+        User user = new User(username, password);
+        String data = user.toPostData();
+
+        ws.postData("login", data, callback);
+    }
+
 }
