@@ -5,7 +5,9 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -99,6 +101,14 @@ public class LoginUserActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+                                        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                                        SharedPreferences.Editor editor = settings.edit();
+                                        try {
+                                            editor.putString("user", response.getJSONObject("data").toString());
+                                            editor.commit();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
 
                                         Intent searchIntent = new Intent(LoginUserActivity.this, SearchFlightActivity.class);
                                         LoginUserActivity.this.startActivity(searchIntent);

@@ -1,5 +1,8 @@
 package com.zeeshanlalani.airline.models;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +37,18 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User(JSONObject obj) {
+        try {
+            this.id = obj.getString("_id");
+            this.firstName = obj.getString("firstName");
+            this.lastName = obj.getString("lastName");
+            this.username = obj.getString("username");
+            this.password = obj.getString("password");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getId() {

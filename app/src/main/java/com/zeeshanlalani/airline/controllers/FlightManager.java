@@ -79,4 +79,23 @@ public class FlightManager {
         return null;
     }
 
+    public void getFlight(String id, APIResponseCallable callback) {
+        ws.getData("flight/" + id, callback);
+    }
+
+    public Flight populateFlight(JSONObject flightData) {
+        Flight f = new Flight(flightData);
+        return f;
+    }
+
+    public void bookFlight(String flightId, String userId, String person, String type, APIResponseCallable callback) {
+        String params = "";
+        params += "flightId="+flightId;
+        params += "&userId="+userId;
+        params += "&person="+person;
+        params += "&type="+type;
+
+        ws.postData("booking",params,callback);
+    }
+
 }

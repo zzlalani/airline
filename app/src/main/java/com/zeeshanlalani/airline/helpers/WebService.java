@@ -98,7 +98,7 @@ public class WebService {
      */
     public void getData (final String request, final APIResponseCallable callback) {
 
-        Log.d("API", "Sending post request to URL (" + SERVICE_URL + request + ")");
+        Log.d("API", "Sending get request to URL (" + SERVICE_URL + request + ")");
 
         executorService.execute(new Runnable() {
             @Override

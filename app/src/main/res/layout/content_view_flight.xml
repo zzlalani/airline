@@ -73,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:text="Economy"
                         android:textStyle="bold"
-                        android:id="@+id/text_class"/>
+                        android:id="@+id/text_type"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -359,7 +359,7 @@
                         android:layout_gravity="center_horizontal" />
                 </LinearLayout>
             </LinearLayout>
-
+            <!--
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -583,7 +583,7 @@
                         android:layout_gravity="center_horizontal" />
                 </LinearLayout>
             </LinearLayout>
-
+            -->
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btn_book"
                 android:layout_width="fill_parent"
