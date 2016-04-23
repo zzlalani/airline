@@ -164,7 +164,7 @@ public class ViewFlightActivity extends AppCompatActivity {
                 }
 
                 try {
-                    flightManager.bookFlight(flightId, user.getId(), searchObj.getString("person"), searchObj.getString("type"), callback);
+                    flightManager.bookFlight(flightId, user.getId(), searchObj.getString("person"), searchObj.getString("type"), searchObj.getString("departure"), callback);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

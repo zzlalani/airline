@@ -59,7 +59,6 @@ public class ViewBookingListActivity extends AppCompatActivity {
         context = this;
 
         listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(new BookingListAdapter(this));
     }
 
     void getBookings(){
@@ -109,6 +108,7 @@ public class ViewBookingListActivity extends AppCompatActivity {
                         public void run() {
                             try {
                                 bookingList = bookingManager.populateBookings(response.getJSONArray("data"));
+                                listView.setAdapter(new BookingListAdapter(ViewBookingListActivity.this, bookingList));
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

@@ -88,12 +88,13 @@ public class FlightManager {
         return f;
     }
 
-    public void bookFlight(String flightId, String userId, String person, String type, APIResponseCallable callback) {
+    public void bookFlight(String flightId, String userId, String person, String type, String date, APIResponseCallable callback) {
         String params = "";
         params += "flightId="+flightId;
         params += "&userId="+userId;
         params += "&person="+person;
         params += "&type="+type;
+        params += "&bookingDate"+date;
 
         ws.postData("booking",params,callback);
     }

@@ -12,6 +12,9 @@ import android.widget.Toast;
 import com.zeeshanlalani.airline.R;
 import com.zeeshanlalani.airline.ViewBookingActivity;
 import com.zeeshanlalani.airline.ViewBookingListActivity;
+import com.zeeshanlalani.airline.models.Booking;
+
+import java.util.List;
 
 /**
  * Created by zzlal on 12/3/2015.
@@ -21,18 +24,20 @@ public class BookingListAdapter extends BaseAdapter {
 
     Context context;
     private static LayoutInflater inflater = null;
+    List<Booking> bookingList;
 
-    public BookingListAdapter(ViewBookingListActivity bookingListActivity) {
+    public BookingListAdapter(ViewBookingListActivity bookingListActivity, List<Booking> bookingList) {
         // TODO Auto-generated constructor stub
         context = bookingListActivity;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.bookingList = bookingList;
     }
 
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return 10;
+        return this.bookingList.size();
     }
 
     @Override
@@ -63,23 +68,35 @@ public class BookingListAdapter extends BaseAdapter {
         Holder holder=new Holder();
         View rowView = inflater.inflate(R.layout.list_view_booking_list, null);
 
+        Booking b = bookingList.get(position);
+
         holder.input_destination = (TextView) rowView.findViewById(R.id.input_destination);
         holder.input_source = (TextView) rowView.findViewById(R.id.input_source);
         holder.input_date = (TextView) rowView.findViewById(R.id.input_date);
         holder.input_price = (TextView) rowView.findViewById(R.id.input_price);
         holder.input_type = (TextView) rowView.findViewById(R.id.input_type);
 
-        holder.input_destination.setText("BOS");
-        holder.input_source.setText("SFO");
-        holder.input_date.setText("May, 23 15");
-        holder.input_price.setText("$100");
-        holder.input_type.setText("One way");
+        holder.input_destination.setText(b.getFlight().getFrom().getCode());
+        holder.input_source.setText(b.getFlight().getTo().getCode());
+        holder.input_date.setText(b.getBookingDate());
+
+        String priceText = "";
+        if (b.getType() == "First Class") {
+            priceText = b.getFlight().getPricefc();
+        } else if (b.getType() == "Business Class") {
+            priceText = b.getFlight().getPricebc();
+        } else {
+            priceText = b.getFlight().getPriceec();
+        }
+
+        holder.input_price.setText(priceText);
+        holder.input_type.setText(b.getType());
 
         rowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                Toast.makeText(context, "You Clicked " + (position + 1), Toast.LENGTH_LONG).show();
+
                 Intent bookingListIntent = new Intent(context, ViewBookingActivity.class);
                 context.startActivity(bookingListIntent);
             }
