@@ -21,6 +21,19 @@ import java.util.concurrent.Executors;
  * Ref: http://www.ssaurel.com/blog/learn-to-consume-a-rest-web-service-and-parse-json-result-in-android/
  */
 public class WebService {
+
+    public static WebService instance;
+
+    private WebService() {
+
+    }
+
+    public static WebService getInstance() {
+        if (instance == null)
+            instance = new WebService();
+        return instance;
+    }
+
     // private static final String SERVICE_URL = "http://192.168.10.6/api/";
     //private static final String SERVICE_URL = "http://172.20.10.2/api/";
     private static final String SERVICE_URL = "http://10.0.2.2/api/";

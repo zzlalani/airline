@@ -19,10 +19,18 @@ import org.json.JSONObject;
  */
 public class UserManager {
 
-    WebService ws;
+    static private UserManager instance;
 
-    public UserManager () {
-        ws = new WebService();
+    private WebService ws;
+
+    private UserManager () {
+        ws = WebService.getInstance();
+    }
+
+    public static UserManager getInstance() {
+        if (instance == null)
+            instance = new UserManager();
+        return instance;
     }
 
     public void registerUser (String firstName, String lastName, String username, String password, APIResponseCallable callback) {

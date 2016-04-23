@@ -21,7 +21,7 @@ public class FlightManager {
     WebService ws;
 
     public FlightManager () {
-        ws = new WebService();
+        ws = WebService.getInstance();
     }
 
     public void getAirports (APIResponseCallable callback) {

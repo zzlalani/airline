@@ -35,7 +35,7 @@ public class LoginUserActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        userController = new UserManager();
+        userController = UserManager.getInstance();
 
         TextView link_register = (TextView) findViewById(R.id.link_register);
         link_register.setOnClickListener(new View.OnClickListener() {
