@@ -53,7 +53,7 @@ public class ViewBookingListActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        bookingManager = new BookingManager();
+        bookingManager = BookingManager.getInstance();
 
         getBookings();
         context = this;

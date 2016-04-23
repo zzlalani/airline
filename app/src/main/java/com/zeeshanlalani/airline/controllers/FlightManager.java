@@ -20,8 +20,16 @@ public class FlightManager {
     List<Airport> airports;
     WebService ws;
 
-    public FlightManager () {
+    private static FlightManager instance;
+
+    private FlightManager () {
         ws = WebService.getInstance();
+    }
+
+    public static FlightManager getInstance() {
+        if ( instance == null )
+            instance = new FlightManager();
+        return instance;
     }
 
     public void getAirports (APIResponseCallable callback) {

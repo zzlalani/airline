@@ -44,7 +44,7 @@ public class ViewFlightActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        flightManager = new FlightManager();
+        flightManager = FlightManager.getInstance();
         searchObj = null;
 
         try {

@@ -17,8 +17,16 @@ public class BookingManager {
 
     WebService ws;
 
-    public BookingManager() {
+    private static BookingManager instance;
+
+    private BookingManager() {
         ws = WebService.getInstance();
+    }
+
+    public static BookingManager getInstance() {
+        if ( instance == null )
+            instance = new BookingManager();
+        return instance;
     }
 
     public void getBookings(String userId, APIResponseCallable callback) {

@@ -50,7 +50,7 @@ public class SearchFlightActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        flightManager = new FlightManager();
+        flightManager = FlightManager.getInstance();
         getAirports();
 
         spinner_from = (Spinner) findViewById(R.id.spinner_from);
