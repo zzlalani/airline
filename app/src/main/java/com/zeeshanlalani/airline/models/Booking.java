@@ -15,8 +15,9 @@ public class Booking {
     String type;
     String bookingDate;
     String date;
+    Payment payment;
 
-    public Booking(String id, User user, Flight flight, String person, String type, String bookingDate, String date) {
+    public Booking(String id, User user, Flight flight, String person, String type, String bookingDate, String date, Payment payment) {
         this.id = id;
         this.user = user;
         this.flight = flight;
@@ -24,14 +25,16 @@ public class Booking {
         this.type = type;
         this.bookingDate = bookingDate;
         this.date = date;
+        this.payment = payment;
     }
 
-    public Booking(User user, Flight flight, String person, String type, String bookingDate) {
+    public Booking(User user, Flight flight, String person, String type, String bookingDate, Payment payment) {
         this.user = user;
         this.flight = flight;
         this.person = person;
         this.type = type;
         this.bookingDate = bookingDate;
+        this.payment = payment;
     }
 
     public Booking(JSONObject obj) {
@@ -45,35 +48,43 @@ public class Booking {
             this.date = obj.getString("date");
 
         } catch (JSONException e) {
-e.printStackTrace();
+            e.printStackTrace();
         }
-        }
+    }
 
-public String getId() {
+    public String getId() {
         return id;
-        }
+    }
 
-public User getUser() {
+    public User getUser() {
         return user;
-        }
+    }
 
-public Flight getFlight() {
+    public Flight getFlight() {
         return flight;
-        }
+    }
 
-public String getPerson() {
+    public String getPerson() {
         return person;
-        }
+    }
 
-public String getType() {
+    public String getType() {
         return type;
-        }
+    }
 
-public String getBookingDate() {
+    public String getBookingDate() {
         return bookingDate;
-        }
+    }
 
-public String getDate() {
+    public String getDate() {
         return date;
-        }
-        }
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment _payment) {
+        payment = _payment;
+    }
+}
